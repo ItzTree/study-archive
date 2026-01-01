@@ -56,3 +56,5 @@
   SonySpeaker---소리 내린다.
   SamsungTV---전원 끈다.
   ```
+- [dfcdc1e](https://github.com/ItzTree/study-archive/commit/dfcdc1e562dde17d481761ce8ff8097d0f032ad2)  
+  \<constructor-arg> 엘리먼트에 ref와 value 속성을 사용하여 전달할 값을 지정하고, index 속성을 사용하여 어떤 값이 몇 번째 매개변수로 매핑되는지 지정한다.
