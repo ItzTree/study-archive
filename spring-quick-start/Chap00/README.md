@@ -20,3 +20,5 @@ https://velog.io/@dondonee/Spring-Legacy-Project-%EB%A7%8C%EB%93%A4%EA%B8%B0-1
   다형성(polymorphism)을 이해하기 위한 예제이다.  
   `SamsungTV`와 `LgTV`는 메소드 시그니처가 다르기 때문에 객체를 바꾸면 이에 해당하는 메소드 이름도 모두 바꿔야 한다.  
   하지만, 다형성을 이용하여 TV가 가질 수 있는 메소드 시그니처를 지정하면 객체를 바꾸더라도 코드를 애써 수정하지 않아도 된다.
+- [4cf24b5](https://github.com/ItzTree/study-archive/commit/4cf24b5d9ff664b14b8c8cee281211d7ee3b8a55)  
+  TV라는 인터페이스를 만들고 SamsungTV와 LgTV가 이를 상속한다. 객체를 변경하더라도 메소드 이름은 바꾸지 않아도 되기에 유지보수가 편해진다.
