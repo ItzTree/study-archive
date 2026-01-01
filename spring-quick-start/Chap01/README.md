@@ -24,6 +24,11 @@
 컨테이너는 기본적으로 매개변수가 없는 디폴트 생성자를 호출하는데, 생성자 인젝션을 통해 **매개변수를 갖는 다른 생성자**를 호출하게 할 수 있다.  
 원래는 bean에 등록된 순서대로 객체를 생성하지만, 생성자 인젝션으로 인해 의존성이 생긴 경우에는 순서가 뒤바뀔 수도 있다.
 
+### Setter 인젝션
+Setter 메소드를 호출하여 멤버변수를 원하는 값으로 설정한다. 생성자 인젝션과 결과가 같아 어떤 방법을 사용하더라도 상관 없지만, 대부분 setter 인젝션을 사용한다.  
+Setter 메소드는 bean 객체 생성 직후에 스프링 컨테이너가 자동으로 호출한다. Setter 인젝션이 동작하려면 메소드뿐만 아니라 기본 생성자도 반드시 필요하다.  
+스프링 설정 파일에는 \<constructor-arg> 대신 \<property> 엘리먼트를 사용한다.  
+
 ### 커밋
 - [b432b4d](https://github.com/ItzTree/study-archive/commit/b432b4dfb7ab48c1cd5fe65a721c75b34e701bd9)  
   `resources` 폴더에 `applicationContext.xml`을 만들고 기존의 SamsungTV 클래스를 등록한다. 스프링 컨테이너를 구동하고 테스트하기 위해 TVUser 클래스를 일부 수정한다.
@@ -58,3 +63,15 @@
   ```
 - [dfcdc1e](https://github.com/ItzTree/study-archive/commit/dfcdc1e562dde17d481761ce8ff8097d0f032ad2)  
   \<constructor-arg> 엘리먼트에 ref와 value 속성을 사용하여 전달할 값을 지정하고, index 속성을 사용하여 어떤 값이 몇 번째 매개변수로 매핑되는지 지정한다.
+- [bd9a4ef](https://github.com/ItzTree/study-archive/commit/bd9a4ef621454080242a14a7a6978db2da3fea1b)  
+  Speaker 인터페이스를 생성하고 AppleSpeaker 클래스를 만든 후 스프링 설정 파일을 수정한다.  
+
+  ```
+  ===> AppleSpeaker 객체 생성
+  ===> SamsungTV(3) 객체 생성
+  ===> SonySpeaker 객체 생성
+  SamsungTV---전원 켠다. (가격 : 2700000)
+  AppleSpeaker---소리 올린다.
+  AppleSpeaker---소리 내린다.
+  SamsungTV---전원 끈다.
+  ```
