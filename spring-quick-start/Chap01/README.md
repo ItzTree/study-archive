@@ -20,6 +20,9 @@
   **Dependency Lookup** : 컨테이너가 객체를 생성하고, 클라이언트가 검색(lookup)하여 사용하는 방식. 하지만 실제로는 사용하지 않는다.  
   **Dependency Injection** : 객체 사이의 의존성을 스프링 설정 파일을 바탕으로 컨테이너가 알아서 처리한다. 이는 다시 세터 인젝션과 생성자 인젝션으로 나뉜다.  
 
+### 생성자 인젝션
+컨테이너는 기본적으로 매개변수가 없는 디폴트 생성자를 호출하는데, 생성자 인젝션을 통해 **매개변수를 갖는 다른 생성자**를 호출하게 할 수 있다.  
+원래는 bean에 등록된 순서대로 객체를 생성하지만, 생성자 인젝션으로 인해 의존성이 생긴 경우에는 순서가 뒤바뀔 수도 있다.
 
 ### 커밋
 - [b432b4d](https://github.com/ItzTree/study-archive/commit/b432b4dfb7ab48c1cd5fe65a721c75b34e701bd9)  
@@ -27,7 +30,8 @@
   `applicationContext.xml` 로딩 → `<bean>` 설정 확인 → SamsungTV 클래스 생성자 호출 → `getBean("tv")` 호출 → 컨테이너가 관리하는 SamsungTV 객체 리턴
   컨테이너가 구동되는 시점(`new GenericXmlApplicationContext`)에 설정 파일을 읽어 bean 객체를 미리 생성(pre-loading)해둔다. 그래서 `getBean()`을 호출하지 않더라도 생성자는 호출이 되어 "===> SamsungTV 객체 생성"이라는 메시지가 출력된다.
 - [08dd798](https://github.com/ItzTree/study-archive/commit/08dd7981bb4b64d1be82c32b2437baf31a1bb2b9)  
-  applicationContext.xml 파일에 init-method와 destroy-method 속성을 설정하여 객체의 생성과 삭제를 알아본다.
+  applicationContext.xml 파일에 init-method와 destroy-method 속성을 설정하여 객체의 생성과 삭제를 알아본다.  
+
   ```
   ===> SamsungTV 객체 생성
   객체 초기화 작업 처리...
@@ -41,3 +45,14 @@
   같은 객체를 여러 번 요청했을 때, 싱글톤 패턴에 의해 한 번만 생성되는 것을 알아본다.
 - [b13bd83](https://github.com/ItzTree/study-archive/commit/b13bd83963fbff0a8027133ae951b774b4f6bcde)  
   의존성을 알아보기 위해 SonySpeaker 클래스를 추가하였다. 하지만 여기서는 SonySpeaker 객체가 쓸데없이 두 개나 생성되는 문제와 다른 스피커로 바꿔야 할 때, 소스코드를 직접 수정해야 한다는 문제가 있다.
+- [dd4e3ae](https://github.com/ItzTree/study-archive/commit/dd4e3aed95c7d28478d6902d16d49926973ebfa3)  
+  생성자 인젝션을 사용하여 SonySpeaker를 매개변수로 갖는 생성자를 호출했다. SonySpeaker 객체가 먼저 생성되고 나서 SamsungTV 객체가 생성되었다.  
+
+  ```
+  ===> SonySpeaker 객체 생성
+  ===> SamsungTV(2) 객체 생성
+  SamsungTV---전원 켠다.
+  SonySpeaker---소리 올린다.
+  SonySpeaker---소리 내린다.
+  SamsungTV---전원 끈다.
+  ```

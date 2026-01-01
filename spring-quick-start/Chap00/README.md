@@ -13,6 +13,7 @@ https://velog.io/@dondonee/Spring-Legacy-Project-%EB%A7%8C%EB%93%A4%EA%B8%B0-1
   인텔리제이에서 Maven Archetye 프로젝트를 생성하고 pom.xml, servlet-context.xml 등 기본 환경 설정에 필요한 파일들을 작성한다. 여러 디렉토리들을 생성하여 스프링 MVC 구조에 맞게 한다.
 - [89cba03](https://github.com/ItzTree/study-archive/commit/89cba035366519a31049cbe5e7025295a6fbbe61)  
   책 예제 실습을 위한 HelloServlet.java을 생성하고, web.xml에 서블릿을 등록한다.`/hello.do` 로 접속하면 다음 메세지가 뜬다.  
+  
   ```
   ===> HelloServlet 객체 생성
   ===> doGet() 메소드 호출
