@@ -27,3 +27,6 @@
   SamsungTV---전원 끈다.
   객체 삭제 전에 처리할 로직 처리...
   ```
+- [ba3f96c](https://github.com/ItzTree/study-archive/commit/ba3f96cfcb29de3da5c795411f230c76a6875053)  
+  - scope 속성
+  하나의 객체만 생성하도록 제어하기 위해 **singleton** 패턴을 사용한다. scope 속성값은 기본으로 싱글톤으로 지정되어 있어, 여러번 객체를 요청하더라도 하나만 생성된다. 속성값을 **prototype**으로 지정하면 매번 새로운 객체를 생성한다.
