@@ -13,6 +13,9 @@ https://velog.io/@dondonee/Spring-Legacy-Project-%EB%A7%8C%EB%93%A4%EA%B8%B0-1
   책 예제 실습을 위한 HelloServlet.java을 생성하고, web.xml에 서블릿을 등록한다.`/hello.do` 로 접속하면 다음 메세지가 뜬다.  
   ```
   ===> HelloServlet 객체 생성
-  doGet() 메소드 호출
+  ===> doGet() 메소드 호출
   ```
   `/hello.do` 요청 → web.xml의 `<servlet-mapping>` 확인 → hello라는 servlet-name 발견 → web.xml의 `<servlet>` 확인 → `com.springbook.biz.HelloServlet` 확인 → `doGet()` 메소드 호출
+- [4e902e9](https://github.com/ItzTree/study-archive/commit/4e902e97ae4883e807ed299b2bdfcba5bb3cb1f7)  
+  다형성(polymorphism)을 이해하기 위한 예제이다.  
+  `SamsungTV`와 `LgTV`는 메소드 시그니처가 다르기 때문에 객체를 바꾸면 이에 해당하는 메소드 이름도 모두 바꿔야 한다.
