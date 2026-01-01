@@ -13,6 +13,6 @@ public class HelloServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet() 메소드 호출");
+        System.out.println("===> doGet() 메소드 호출");
     }
 }
