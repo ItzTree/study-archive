@@ -6,6 +6,8 @@
 https://velog.io/@dondonee/Spring-Legacy-Project-%EB%A7%8C%EB%93%A4%EA%B8%B0-1   
 위 홈페이지를 참고하여 프로젝트 환경설정을 진행하였다.  
 
+서블릿 컨테이너에 대한 간단한 예제를 수행하고, 다형성과 디자인 패턴에 대해 간단하게 알아본다.
+
 ### 커밋
 - [951db40](https://github.com/ItzTree/study-archive/commit/951db409a65e787c597f2cf6469eeccb539a22b0)  
   인텔리제이에서 Maven Archetye 프로젝트를 생성하고 pom.xml, servlet-context.xml 등 기본 환경 설정에 필요한 파일들을 작성한다. 여러 디렉토리들을 생성하여 스프링 MVC 구조에 맞게 한다.
