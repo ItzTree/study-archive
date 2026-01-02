@@ -25,9 +25,13 @@
 원래는 bean에 등록된 순서대로 객체를 생성하지만, 생성자 인젝션으로 인해 의존성이 생긴 경우에는 순서가 뒤바뀔 수도 있다.
 
 ### Setter 인젝션
-Setter 메소드를 호출하여 멤버변수를 원하는 값으로 설정한다. 생성자 인젝션과 결과가 같아 어떤 방법을 사용하더라도 상관 없지만, 대부분 setter 인젝션을 사용한다.  
+Setter 메소드를 호출하여 멤버변수를 원하는 값으로 설정한다. 생성자 인젝션과 결과가 같아 어떤 방법을 사용하더라도 상관 없지만, 대부분 Setter 인젝션을 사용한다.  
 Setter 메소드는 bean 객체 생성 직후에 스프링 컨테이너가 자동으로 호출한다. Setter 인젝션이 동작하려면 메소드뿐만 아니라 기본 생성자도 반드시 필요하다.  
 스프링 설정 파일에는 \<constructor-arg> 대신 \<property> 엘리먼트를 사용한다.  
+p 네임스페이스를 사용하여 의존성을 주입할 수도 있다. `p:변수명-ref="참조할 객체 이름"`이나 `p:변수명="설정할 값"` 꼴로 사용하면 된다.
+
+### 컬렉션(Collection) 객체 설정
+List 같은 컬렉션 객체에 의존성을 주입해야 할 때가 있다. 이와 관련하여 \<list>, \<set> 등의 엘리먼트를 사용하여 컬렉션을 매핑할 수 있다.
 
 ### 커밋
 - [b432b4d](https://github.com/ItzTree/study-archive/commit/b432b4dfb7ab48c1cd5fe65a721c75b34e701bd9)  
@@ -89,3 +93,5 @@ Setter 메소드는 bean 객체 생성 직후에 스프링 컨테이너가 자�
   AppleSpeaker---소리 내린다.
   SamsungTV---전원 끈다.
   ```
+- [7cbf966](https://github.com/ItzTree/study-archive/commit/7cbf966a5d1910692fe7f0dba3deb0866fb49d54)  
+  Setter 인젝션을 설정할 때, p 네임스페이스를 사용할 수도 있다.
