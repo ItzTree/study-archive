@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 @Component("tv")
 public class LgTV implements TV {
     @Autowired
-    @Qualifier("apple")
     private Speaker speaker;
 
     public LgTV() {
