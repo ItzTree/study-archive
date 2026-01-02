@@ -75,3 +75,17 @@ Setter 메소드는 bean 객체 생성 직후에 스프링 컨테이너가 자�
   AppleSpeaker---소리 내린다.
   SamsungTV---전원 끈다.
   ```
+- [020d18e](https://github.com/ItzTree/study-archive/commit/020d18ea765d7771e2a7b21dbb6382d1c6716563)  
+  Setter 인젝션을 사용하기 위하여 스프링 설정 파일을 수정하고 실행한다. 생성자 인젝션과 다르게 SamsungTV가 Speaker 객체보다 먼저 생성된다.  
+
+  ```
+  ===> SamsungTV(1) 객체 생성
+  ===> AppleSpeaker 객체 생성
+  ===> setSpeaker() 호출
+  ===> setPrice() 호출
+  ===> SonySpeaker 객체 생성
+  SamsungTV---전원 켠다. (가격 : 2700000)
+  AppleSpeaker---소리 올린다.
+  AppleSpeaker---소리 내린다.
+  SamsungTV---전원 끈다.
+  ```
