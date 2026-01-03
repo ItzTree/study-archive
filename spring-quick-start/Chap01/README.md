@@ -102,12 +102,11 @@ List 같은 컬렉션 객체에 의존성을 주입해야 할 때가 있다. 이
   ```
 - [7cbf966](https://github.com/ItzTree/study-archive/commit/7cbf966a5d1910692fe7f0dba3deb0866fb49d54)  
   Setter 인젝션을 설정할 때, p 네임스페이스를 사용할 수도 있다.
-
 - [42dde72](https://github.com/ItzTree/study-archive/commit/42dde72cf55192aac9806e4ddb09c94f9e374817)  
   컬렉션 객체를 매핑하는 예시로, List 타입을 매핑한다.
-
 - [f4e420b](https://github.com/ItzTree/study-archive/commit/f4e420bd8963910b1e8fc4b0e46def485621b0a6)  
   context 네임스페이스를 추가하고 component-scan을 설정한다. LgTV 클래스에 tv 컴포넌트 어노테이션을 지정한다.
-
 - [2fa8419](https://github.com/ItzTree/study-archive/commit/2fa84190fd5ef5a29e602b08a849d9aa308ddb53)  
   @Autowired와 @Qualifier를 적용해본다. 
+- [4873224](https://github.com/ItzTree/study-archive/commit/487322463a20a53918d790bfac883d1e9aa1271e)  
+  변경이 적은 LgTV는 어노테이션으로 설정하고, 변경할 가능성이 있는 Speaker는 XML로 설정한다.

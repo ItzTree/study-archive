@@ -5,3 +5,4 @@
 | --- | --- |
 | Chap00 | Day01_CLASS01 ~ Day01_CLASS02 |
 | Chap01 | Day01_CLASS03 ~ Day01_CLASS05 |
+| Chap02 | Day01_CLASS06 ~ Day01_CLASS07 |
