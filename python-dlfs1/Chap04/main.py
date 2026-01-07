@@ -2,27 +2,7 @@ import numpy as np
 import pickle
 import sys, os
 from mnist import load_mnist
-
-def step_function(x):
-    y = x > 0
-    return y.astype(np.int)
-
-def sigmoid(x):
-    return 1 / (1 + np.exp(-x))
-
-def relu(x):
-    return np.maximum(0, x)
-
-def identify_function(x):
-    return x
-
-def softmax(a):
-    c = np.max(a)
-    exp_a = np.exp(a - c)
-    sum_exp_a = np.sum(exp_a)
-    y = exp_a / sum_exp_a
-
-    return y
+from functions import *
 
 def get_data():
     (x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=False)
@@ -49,23 +29,27 @@ def predict(network, x):
 
     return y
 
-def mean_squared_error(y, t):
-    return 0.5 * np.sum((y-t)**2)
+# x, t = get_data()
+# network = init_network()
 
-def cross_entropy_error(y, t):
-    delta = 1e-7
-    return -np.sum(t * np.log(y + delta))
+# batch_size = 100
+# accuracy_cnt = 0
 
-x, t = get_data()
-network = init_network()
+# for i in range(0, len(x), batch_size):
+#     x_batch = x[i:i+batch_size]
+#     y_batch = predict(network, x_batch)
+#     p = np.argmax(y_batch, axis=1)
+#     accuracy_cnt += np.sum(p == t[i:i+batch_size])
 
-batch_size = 100
-accuracy_cnt = 0
+# print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
 
-for i in range(0, len(x), batch_size):
-    x_batch = x[i:i+batch_size]
-    y_batch = predict(network, x_batch)
-    p = np.argmax(y_batch, axis=1)
-    accuracy_cnt += np.sum(p == t[i:i+batch_size])
+def gradient_descent(f, init_x, lr=0.01, step_num=100):
+    x = init_x
 
-print("Accuracy:" + str(float(accuracy_cnt) / len(x)))
+    for i in range(step_num):
+        grad = numerical_gradient(f, x)
+        x -= lr * grad 
+    
+    return x
+
+(x_train, t_train), (x_test, t_test) = load_mnist(normalize=True, flatten=True, one_hot_label=True)
