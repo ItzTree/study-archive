@@ -9,4 +9,5 @@
 
 
 ### 커밋
-- 
+- [78be3c5](https://github.com/ItzTree/study-archive/commit/78be3c5286f9cb212ebb256a01ae1fdec754c097)  
+  LogAdvice 클래스와 printLog 메소드를 추가한다. 하지만, 다른 로그 클래스로 바꾸면 모든 소스코드를 수정해야 한다는 단점이 있다.
