@@ -11,5 +11,6 @@ ServiceImpl 클래스 선언부에는 객체 생성을 위해 `@Service`가 선�
 
 ### 커밋
 - [90677f5](https://github.com/ItzTree/study-archive/commit/90677f50d3e6713afff148a548adbc308c64a2c2)  
-  BoardService 컴포넌트를 만들어 비즈니스 컴포넌트 실습을 진행하였다. DAO에 `@Repository` 어노테이션을, ServiceImpl에 `@Autowired` 어노테이션을 사용하였다.
-- 
+  BoardService 컴포넌트를 만들어 비즈니스 컴포넌트 실습을 진행한다. DAO에 `@Repository` 어노테이션을, ServiceImpl에 `@Autowired` 어노테이션을 적용한다.
+- [11cf423](https://github.com/ItzTree/study-archive/commit/11cf42364548d4a13f36f6f50473344785fc5615)  
+  UserService 컴포넌트로 실습을 진행한다. DAO와 ServiceImpl에 어노테이션을 적용하지 않고 bean으로만 관리한다.
