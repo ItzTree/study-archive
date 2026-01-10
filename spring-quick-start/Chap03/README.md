@@ -57,4 +57,12 @@
   ===> JDBC로 getBoardList() 기능 처리
   ---> BoardVO [seq=6, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-10, cnt=0]
   ```
-- 
+- [f0fac52](https://github.com/ItzTree/study-archive/commit/f0fac52a58f3fcea3e4770ee6736d53b29938a0d)  
+  after returning 어드바이스를 추가한다.  
+  
+  ```
+  ===> JDBC로 insertBoard() 기능 처리
+  ===> JDBC로 getBoardList() 기능 처리
+  [사후 처리] 비즈니스 로직 수행 후 동작
+  ---> BoardVO [seq=7, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-10, cnt=0]
+  ```
