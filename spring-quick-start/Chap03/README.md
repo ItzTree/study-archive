@@ -47,3 +47,14 @@
   LogAdvice 클래스와 printLog 메소드를 추가한다. 하지만, 다른 로그 클래스로 바꾸면 모든 소스코드를 수정해야 한다는 단점이 있다.
 - [3a1603d](https://github.com/ItzTree/study-archive/commit/3a1603d42a805fe790381a3670cfa890f78cc84b)  
   BoardServiceClient에서 비즈니스 메소드인 insertBoard()와 getBoardList()를 호출했을 때, printLog를 호출한다. AOP를 사용하면 소스 코드 상의 결합 없이 로깅 코드를 호출할 수 있다.  
+- [b82eb5a](https://github.com/ItzTree/study-archive/commit/b82eb5ac956cea0c819355047655e2607b504d19)  
+  before 어드바이스를 추가한다.  
+
+  ```
+  [사전 처리] 비즈니스 로직 수행 전 동작
+  ===> JDBC로 insertBoard() 기능 처리
+  [사전 처리] 비즈니스 로직 수행 전 동작
+  ===> JDBC로 getBoardList() 기능 처리
+  ---> BoardVO [seq=6, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-10, cnt=0]
+  ```
+- 
