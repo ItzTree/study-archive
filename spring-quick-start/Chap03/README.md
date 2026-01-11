@@ -115,3 +115,11 @@ JoinPoint를 어드바이스 메소드 매개변수로 선언만 하면, 스프�
   [AFTER]: 비즈니스 메소드 수행 후에 처리할 내용...
   ---> BoardVO [seq=8, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-11, cnt=0]
   ```
+- [beb8a03](https://github.com/ItzTree/study-archive/commit/beb8a0370f855c2b6d01173968049384a927da6e)  
+  before 어드바이스에 JoinPoint를 추가하여 호출된 메소드의 정보를 알아본다.  
+
+  ```
+  [사전 처리] getUser() 메소드 ARGS 정보 : UserVO [id=test, password=test123, name=null, role=null]
+  ===> JDBC로 getUser() 기능 처리
+  관리자님 환영합니다.
+  ```

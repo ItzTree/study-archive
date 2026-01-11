@@ -20,10 +20,12 @@
     <bean id="around" class="com.springbook.biz.common.AroundAdvice"/>
 
     <aop:config>
-        <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>
+<!--        <aop:pointcut id="allPointcut" expression="execution(* com.springbook.biz..*Impl.*(..))"/>-->
+        <aop:pointcut id="getPointcut" expression="execution(* com.springbook.biz..*Impl.get*(..))"/>
 
-        <aop:aspect ref="before">
-            <aop:before pointcut-ref="allPointcut" method="beforeLog"/>
+
+        <aop:aspect ref="afterReturning">
+            <aop:after-returning pointcut-ref="getPointcut" method="afterLog" returning="returnObj"/>
         </aop:aspect>
     </aop:config>
 
