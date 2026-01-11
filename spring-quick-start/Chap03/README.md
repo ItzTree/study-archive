@@ -76,4 +76,11 @@
     at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
   ...
   ```
-- 
+- [774bcd5](https://github.com/ItzTree/study-archive/commit/774bcd54018a98da87e10093e1c4f3fc43ffcf92)  
+  after 어드바이스를 추가한다. finally 블록처럼 예외 발생 여부에 상관없이 무조건 수행되는 어드바이스를 등록할 때 사용한다.  
+
+  ```
+  [사후 처리] 비즈니스 로직 수행 후 무조건 동작
+  [예외 처리] 비즈니스 로직 수행 중 예외 발생
+  Exception in thread "main" java.lang.IllegalArgumentException: 0번 글은 등록할 수 없습니다.
+  ```
