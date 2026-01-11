@@ -48,7 +48,7 @@
 - [3a1603d](https://github.com/ItzTree/study-archive/commit/3a1603d42a805fe790381a3670cfa890f78cc84b)  
   BoardServiceClient에서 비즈니스 메소드인 insertBoard()와 getBoardList()를 호출했을 때, printLog를 호출한다. AOP를 사용하면 소스 코드 상의 결합 없이 로깅 코드를 호출할 수 있다.  
 - [b82eb5a](https://github.com/ItzTree/study-archive/commit/b82eb5ac956cea0c819355047655e2607b504d19)  
-  before 어드바이스를 추가한다.  
+  before 어드바이스를 추가한다. 포인트컷으로 지정된 메소드 호출 시, 메소드가 실행되기 전에 동작한다.  
 
   ```
   [사전 처리] 비즈니스 로직 수행 전 동작
@@ -58,7 +58,7 @@
   ---> BoardVO [seq=6, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-10, cnt=0]
   ```
 - [f0fac52](https://github.com/ItzTree/study-archive/commit/f0fac52a58f3fcea3e4770ee6736d53b29938a0d)  
-  after returning 어드바이스를 추가한다.  
+  after returning 어드바이스를 추가한다. 포인트컷으로 지정된 메소드가 정상적으로 실행되고 나서, 데이터를 리턴하는 시점에 동작한다.  
   
   ```
   ===> JDBC로 insertBoard() 기능 처리
@@ -66,3 +66,14 @@
   [사후 처리] 비즈니스 로직 수행 후 동작
   ---> BoardVO [seq=7, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-10, cnt=0]
   ```
+- [27eb84e](https://github.com/ItzTree/study-archive/commit/27eb84e46c00341998e01f27c60989ba23b1131d)  
+  after throwing 어드바이스를 추가한다. 포인트컷으로 지정한 메소드가 실행되다가 예외가 발생하는 시점에 동작한다.  
+
+  ```
+  [예외 처리] 비즈니스 로직 수행 중 예외 발생
+  Exception in thread "main" java.lang.IllegalArgumentException: 0번 글은 등록할 수 없습니다.
+    at com.springbook.biz.board.impl.BoardServiceImpl.insertBoard(BoardServiceImpl.java:18)
+    at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+  ...
+  ```
+- 
