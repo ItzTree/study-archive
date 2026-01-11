@@ -41,6 +41,24 @@
 - \<aop:advisor> 엘리먼트  
   AOP 설정에서 애스팩트를 사용하려면 어드바이스의 아이디와 메소드 이름을 알아야 하는데, 이를 알지 못 할 때에 사용할 수 있다.  
 
+### JoinPoint
+어드바이스 메소드를 의미 있게 구현하려면 클라이언트가 호출한 비즈니스 메소드의 정보가 필요하다. 예를 들어, After Throwing 어드바이스가 동작했을 때에는 예외가 발생한 비즈니스 메소드 이름이 무엇인지, 그 메소드가 속한 클래스와 패키지 이름 등의 정보가 필요하다. 이러한 정보를 알 수 있도록 JoinPoint 인터페이스를 제공한다.  
+| 메소드 | 설명 |
+|:---|:---|
+| Signature getSignature() | 클라이언트가 호출한 메소드의 시그니처(리턴타입, 이름, 매개변수) 정보가 저장된 Signature 객체 리턴 |
+| Object getTarget() | 클라이언트가 호출한 비즈니스 메소드를 포함하는 객체 리턴 |
+| Object[] getArgs() | 클라이언트가 호출한 비즈니스 메소드의 인자 목록 리턴 |  
+
+Around 어드바이스에서 `ProceedingJoinPoint`를 사용했는데, 이 인터페이스는 JoinPoint를 상속한 것이다. 따라서, Before, After Returning, After Throwing, After 어드바이스에서는 `JoinPoint`를 사용해야 하고, Around 어드바이스만 `ProceedingJoinPoint`를 사용한다.  
+아래는 `getSignature()` 메소드가 리턴하는 Signature 객체의 메소드들이다.  
+| 메소드 | 설명 |
+|:---|:---|
+| String getName() | 클라이언트가 호출한 메소드 이름 |
+| String toLongString() | 클라이언트가 호출한 메소드의 리턴타입, 이름, 매개변수를 패키지 경로까지 포함하여 리턴 |
+| String toShortString() | 클라이언트가 호출한 메소드 시그니처를 축약한 문자열로 리턴 |  
+
+JoinPoint를 어드바이스 메소드 매개변수로 선언만 하면, 스프링 컨테이너가 JoinPoint 객체를 생성한다. 메소드 호출과 관련된 모든 정보를 JoinPoint 객체에 저장하여 어드바이스 메소드를 호출할 때 인자로 알아서 넘겨준다.  
+
 
 ### 커밋
 - [78be3c5](https://github.com/ItzTree/study-archive/commit/78be3c5286f9cb212ebb256a01ae1fdec754c097)  
@@ -83,4 +101,17 @@
   [사후 처리] 비즈니스 로직 수행 후 무조건 동작
   [예외 처리] 비즈니스 로직 수행 중 예외 발생
   Exception in thread "main" java.lang.IllegalArgumentException: 0번 글은 등록할 수 없습니다.
+  ```
+- [1466c34](https://github.com/ItzTree/study-archive/commit/1466c34c1ca6018f5df6a9cc4bda2a2e62a75fb8)  
+  around 어드바이스를 추가한다. 하나의 어드바이스가 비즈니스 메소드 실행 전과 후에 모두 동작해야 하는 경우에 사용한다.  
+  around 어드바이스는 클라이언트의 메소드 호출을 가로챈다. 비즈니스 메소드가 실행되기 전에 사전 처리 로직을 수행할 수 있고, 비즈니스 메소드가 모두 실행되고 나서 사후 처리 로직을 수행할 수 있다.
+
+  ```
+  [BEFORE]: 비즈니스 메소드 수행 전에 처리할 내용...
+  ===> JDBC로 insertBoard() 기능 처리
+  [AFTER]: 비즈니스 메소드 수행 후에 처리할 내용...
+  [BEFORE]: 비즈니스 메소드 수행 전에 처리할 내용...
+  ===> JDBC로 getBoardList() 기능 처리
+  [AFTER]: 비즈니스 메소드 수행 후에 처리할 내용...
+  ---> BoardVO [seq=8, title=임시 제목, writer=홍길동, content=임시 내용....., regDate=2026-01-11, cnt=0]
   ```
