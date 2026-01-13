@@ -50,6 +50,18 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${org.springframework-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
+
     <!-- AspectJ -->
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -62,8 +74,6 @@
       <artifactId>aspectjweaver</artifactId>
       <version>1.8.9</version>
     </dependency>
-
-    <!-- 아래에 책에 나오는 다른 dependency 태그들을 계속 추가해야 합니다 (AspectJ, Logging 등) -->
 
     <!-- 테스트용 -->
     <dependency>
