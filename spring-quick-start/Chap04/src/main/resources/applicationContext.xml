@@ -25,6 +25,11 @@
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
+    <!-- Spring JDBC -->
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
     <bean id="userService" class="com.springbook.biz.user.impl.UserServiceImpl">
         <property name="userDAO" ref="userDAO"/>
     </bean>

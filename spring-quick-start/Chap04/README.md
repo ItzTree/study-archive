@@ -19,8 +19,11 @@ JDBC를 이용하면 데이터베이스에 비종속적인 DB 연동 로직을 �
     SELECT 구문으로 검색된 정수값을 리턴받을 수 있다.
 3. `queryForObject()` 메소드  
     SELECT 구문의 실행 결과를 RowMapper 객체로 매핑하여 리턴받을 때 사용한다. 검색 결과가 없거나 2개 이상이면 예외를 발생시킨다.
-4. `query()` 메소드
+4. `query()` 메소드  
     SELECT 문의 실행 결과가 여러 개일 때 사용한다. `queryForObject()` 메소드와 사용법은 같고, 객체 여러 개가 `List` 컬렉션에 저장되어 리턴된다.
+
+이제, DAO 클래스를 구현하기 위해 JdbcDaoSupport 클래스를 상속할 수 있다. `getJdbcTemplate()` 메소드를 호출하면 `JdbcTemplate` 객체가 리턴되지만, 이 객체가 리턴되려면 `DataSource` 객체를 가지고 있어야하므로 부모 클래스의 `setDataSource()`를 호출해 의존성 주입한다.  
+DAO 클래스에서 `JdbcTemplate` 객체를 얻는 다른 방법은 `JdbcTemplate` 클래스를 \<bean>으로 등록하고 의존성 주입으로 처리한다.  
 
 
 ### 커밋
@@ -35,4 +38,5 @@ JDBC를 이용하면 데이터베이스에 비종속적인 DB 연동 로직을 �
     ```
 - [b071d2d](https://github.com/ItzTree/study-archive/commit/b071d2dfa3ff9d586884d0fdfe6830d19c991d8b)  
     AfterReturning 등 다른 어드바이스 어노테이션을 적용하고, 외부 클래스의 포인트컷을 적용한다.  
-- 
+- [678ce69](https://github.com/ItzTree/study-archive/commit/678ce6925ae21d9c790bebf67e5964717a6873a3)  
+    JdbcDaoSupport 클래스를 상속하여 DAO 클래스를 구현한다.  
