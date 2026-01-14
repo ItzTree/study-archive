@@ -48,4 +48,5 @@ DAO 클래스에서 `JdbcTemplate` 객체를 얻는 다른 방법은 `JdbcTempla
     JdbcDaoSupport 클래스를 상속하여 DAO 클래스를 구현한다.  
 - [fa83550](https://github.com/ItzTree/study-archive/commit/fa835503b6f2ced5dab4398525e3300cb2b7aa0a)  
     bean과 의존성 주입으로 DAO 클래스 구현
--  
+-  [a3666ce](https://github.com/ItzTree/study-archive/commit/a3666cebed938d83c4e2b5b23583540faa00cc9d)  
+    트랜잭션 처리
