@@ -17,11 +17,21 @@ JSP 파일에 자바 코드와 마크업 코드들이 뒤섞여 있어 어려움
 - getBoardList.jsp  
     BoardVO와 BoardDAO 객체를 이용하여 BOARD 테이블에 있는 게시글 목록을 검색한다. 검색 결과로 얻은 List\<BoardVO> 객체를 이용하여 게시글 목록 화면을 구성한다. 게시글 제목을 클릭했을 때, 게시글의 상세 정보를 조회하여 출력하기 위해 `getBoard.jsp` 파일로 링크를 연결했다. 이 때, 사용자가 클릭한 게시글 번호를 넘겨주기 위해 `?`를 추가하고 쿼리 문자열 정보를 같이 넘겨준다.  
 - getBoard.jsp  
-    글 목록 화면에서 사용자가 클릭한 게시글 번호를 추출한다. BoardDAO 객체의 `getBoard()` 메소드를 이용하여 이 게시글 번호에 해당하는 BoardVO 객체를 검색한다. 이 객체의 값들을 화면에 출력한다. 상세 화면은 수정을 위한 화면이기도 하다.  
-
+    글 목록 화면에서 사용자가 클릭한 게시글 번호를 추출한다. BoardDAO 객체의 `getBoard()` 메소드를 이용하여 이 게시글 번호에 해당하는 BoardVO 객체를 검색하고, 이 객체의 값들을 화면에 출력한다. 상세 화면은 수정을 위한 화면이기도 하다.  
+- insertBoard.jsp  
+    글 등록 화면은 로그인 화면과 유사하다. title, writer, content 파라미터 정보를 입력하고 버튼을 누르면 `insertBoard_proc.jsp` 파일을 호출한다.  
+- insertBoard_proc.jsp  
+    사용자가 입력한 데이터를 데이터베이스에 저장한다. 사용자 입력 정보를 추출하기 전에 `setCharacterEncoding()` 메소드로 한글 인코딩을 처리한다. 추출한 입력값들을 BoardVO 객체에 저장하고 BoardDAO의 `insertBoard()` 메소드를 호출하여 DB에 연동한다.  
+- updateBoard_proc.jsp  
+    글 수정을 처리하려면 글의 제목과 내용, 게시글 번호를 알아야 한다. `getBoard.jsp`에 hidden 타입의 \<input> 태그를 추가하여 게시글 번호도 같이 전달한다. 사용자가 제목과 내용을 수정하고 글 수정 버튼을 클릭하면 title, content 파라미터 정보와 hidden으로 설정된 게시글 번호 정보를 갖고 `updateBoard_proc.jsp` 파일을 호출한다.  
+- deleteBoard_proc.jsp  
+    삭제 요청된 게시글 번호를 추출하여 BoardVO 객체에 저장한다. 이후 BoardDAO의 `deleteBoard()` 메소드를 호출하여 데이터를 삭제 처리한다.  
+- logout_proc.jsp  
+    세션과 관련된 작업을 처리해야 하지만, 단순히 로그아웃에 대한 세션을 종료하고, 로그인 화면으로 이동한다.  
 
 
 ### 커밋
 - [96faab6](https://github.com/ItzTree/study-archive/commit/96faab66bcbac787d9f4daf96d28a71a344cc5e0)  
     Model 1 아키텍처를 적용하여 글 목록 검색 기능을 구현하였다.  
--  
+- [7509892](https://github.com/ItzTree/study-archive/commit/7509892dab59e1f5bd9db09b61febbccb3d57174)  
+    글 내용 조회하는 기능을 구현한다.  

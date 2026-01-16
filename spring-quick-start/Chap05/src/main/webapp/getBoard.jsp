@@ -28,6 +28,7 @@
 
     <!-- 글 수정 처리를 위해 updateBoard_proc.jsp로 데이터를 전송합니다 -->
     <form action="updateBoard_proc.jsp" method="post">
+        <input name="seq" type="hidden" value="<%= board.getSeq() %>"/>
         <table border="1" cellpadding="0" cellspacing="0">
             <tr>
                 <td bgcolor="orange" width="70">제목</td>
@@ -59,7 +60,7 @@
     <hr>
     <!-- 글 삭제는 별도의 form 없이 링크로 처리 (GET 방식) -->
     <a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-    <a href="deleteBoard_proc.jsp">글삭제</a>&nbsp;&nbsp;&nbsp;
+    <a href="deleteBoard_proc.jsp?seq=<%= board.getSeq() %>">글삭제</a>&nbsp;&nbsp;&nbsp;
     <a href="getBoardList.jsp">글목록</a>
 </center>
 </body>
