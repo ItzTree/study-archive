@@ -5,15 +5,8 @@
 <%@ page import="com.springbook.biz.board.BoardVO" %>
 
 <%
-  // 1. 사용자 입력 정보 추출(검색 기능은 나중에 구현)
-  request.setCharacterEncoding("UTF-8");
-
-  // 2. DB 연동 처리
-  BoardVO vo = new BoardVO();
-  BoardDAO boardDAO = new BoardDAO();
-  List<BoardVO> boardList = boardDAO.getBoardList(vo);
-
-  // 3. 응답 화면 구성
+  // 세션에 저장된 글 목록을 꺼낸다.
+  List<BoardVO> boardList = (List<BoardVO>) session.getAttribute("boardList");
 %>
 
 <!DOCTYPE html>
@@ -27,7 +20,7 @@
   <h1>글 목록</h1>
   <h3>
     테스트님 환영합니다...
-    <a href="logout_proc.jsp">Log-out</a>
+    <a href="logout.do">Log-out</a>
   </h3>
 
   <!-- 검색 폼 -->
@@ -62,7 +55,7 @@
       <td><%= board.getSeq() %></td>
       <td align="left">
         <!-- 제목 클릭 시 상세 페이지(getBoard.jsp)로 이동 -->
-        <a href="getBoard.jsp?seq=<%= board.getSeq() %>">
+        <a href="getBoard.do?seq=<%= board.getSeq() %>">
           <%= board.getTitle() %>
         </a>
       </td>

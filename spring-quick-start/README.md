@@ -8,3 +8,5 @@
 | Chap02 | Day01_CLASS 06 ~ Day01_CLASS 07 |
 | Chap03 | Day02_CLASS 01 ~ Day02_CLASS 04 |
 | Chap04 | Day02_CLASS 05 ~ Day02_CLASS 07 |
+| Chap05 | Day03_CLASS 01 ~ Day03_CLASS 03 |
+| Chap06 | Day03_CLASS 04 ~ Day03_CLASS 07 |

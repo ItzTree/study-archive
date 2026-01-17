@@ -30,6 +30,18 @@
 <!--    <url-pattern>/</url-pattern>-->
 <!--  </servlet-mapping>-->
 
+  <!-- DispatcherServlet 등록 -->
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>com.springbook.view.controller.DispatcherServlet</servlet-class>
+  </servlet>
+
+  <!-- DispatcherServlet 매핑 (모든 .do 요청을 받음) -->
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
   <!-- 3. 한글 깨짐 방지 필터 (필수) -->
   <filter>
     <filter-name>encodingFilter</filter-name>
