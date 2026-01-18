@@ -50,8 +50,6 @@ Controller는 MVC 프레임워크가 제공하는 것을 사용하는 것이 더
 - **insertBoard.do**  
     `insertBoard_proc.jsp` 파일에 있던 자바 코드를 복사하여 DispatcherServlet 클래스에 붙여넣는다. 등록 작업이 성공하면 반드시 `getBoardList.do`를 요청하도록 해야 한다. `getBoardList.jsp`를 요청하게 되면 글을 등록하기 전의 세션에 있는 글 목록을 가져오기 때문에, `getBoardList.do`를 통해 세션을 최신화해야 한다. 이는 수정, 삭제 작업에서도 마찬가지이다.  
 
-
-
 ### 커밋
 - [96faab6](https://github.com/ItzTree/study-archive/commit/96faab66bcbac787d9f4daf96d28a71a344cc5e0)  
     Model 1 아키텍처를 적용하여 글 목록 검색 기능을 구현하였다.  
@@ -59,3 +57,5 @@ Controller는 MVC 프레임워크가 제공하는 것을 사용하는 것이 더
     글 내용 조회하는 기능을 구현한다.  
 - [9cab019](https://github.com/ItzTree/study-archive/commit/9cab019f3a8754391db01dcb3aeccc9267efe52e)  
     Model 1 아키텍처를 적용하여 게시글 서비스를 구현한다.  
+- [22018e6](https://github.com/ItzTree/study-archive/commit/22018e61e0b27c7541063ae07559ae3cbbc340df)  
+    Model 2 아키텍처를 적용한다.  
