@@ -1,5 +1,6 @@
 package com.springbook.view.controller;
 
+import com.springbook.view.board.*;
 import com.springbook.view.user.LoginController;
 
 import java.util.HashMap;
@@ -11,6 +12,12 @@ public class HandlerMapping {
     public HandlerMapping() {
         mappings = new HashMap<String, Controller>();
         mappings.put("/login.do", new LoginController());
+        mappings.put("/getBoardList.do", new GetBoardListController());
+        mappings.put("/getBoard.do", new GetBoardController());
+        mappings.put("/insertBoard.do", new InsertBoardController());
+        mappings.put("/updateBoard.do", new UpdateBoardController());
+        mappings.put("/deleteBoard.do", new DeleteBoardController());
+        mappings.put("/logout.do", new LoginController());
     }
 
     public Controller getController(String path) {

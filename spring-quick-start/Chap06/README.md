@@ -24,10 +24,11 @@ DispatcherServlet은 클라이언트의 요청을 가장 먼저 받아들이는 
 - ViewResolver 클래스  
     Controller가 리턴한 View 이름에 접두사와 접미사를 결합하여 최종으로 실행될 View 경로와 파일명을 완성한다. ViewResolver도 DispatcherServlet의 `init()` 메소드가 호출될 때 생성된다. 
 
+클라이언트가 로그인 버튼을 통해 "/login.do" 요청을 전송하면 DispatcherServlet이 요청을 받는다. 서블릿은 HandlerMapping 객체를 통해 로그인 요청을 처리할 LoginController를 검색하고, 이 컨트롤러의 `handleRequest()` 메소드를 호출하면 로그인 로직이 처리된다. 로그인 처리 후 이동할 화면 정보를 리턴받으면 서블릿은 ViewResolver를 통해 JSP 파일의 이름과 경로를 리턴받고, 이를 실행하여 결과가 브라우저에 응답된다.  
     
 
 
-
-
 ### 커밋
+- [99fe82d](https://github.com/ItzTree/study-archive/commit/99fe82d7972f1b7fb25c4d58eafcb931190b3dfd)  
+    Controller 인터페이스, HandlerMapping, ViewResolver 등 MVC 프레임워크 기본 토대를 구현한다.  
 - 
