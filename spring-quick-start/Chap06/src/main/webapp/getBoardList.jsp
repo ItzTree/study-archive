@@ -1,13 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!-- 아래 import 구문들이 꼭 있어야 자바 클래스를 불러올 수 있습니다 -->
-<%@ page import="java.util.List" %>
-<%@ page import="com.springbook.biz.board.impl.BoardDAO" %>
-<%@ page import="com.springbook.biz.board.BoardVO" %>
-
-<%
-  // 세션에 저장된 글 목록을 꺼낸다.
-  List<BoardVO> boardList = (List<BoardVO>) session.getAttribute("boardList");
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -50,20 +42,20 @@
     </tr>
 
     <%-- 자바 코드로 리스트 반복 출력 --%>
-    <% for (BoardVO board : boardList) { %>
+    <c:forEach items="${boardList}" var="board">
     <tr>
-      <td><%= board.getSeq() %></td>
+      <td>${board.seq}</td>
       <td align="left">
         <!-- 제목 클릭 시 상세 페이지(getBoard.jsp)로 이동 -->
-        <a href="getBoard.do?seq=<%= board.getSeq() %>">
-          <%= board.getTitle() %>
+        <a href="getBoard.do?seq=${board.seq}">
+            ${board.title}
         </a>
       </td>
-      <td><%= board.getWriter() %></td>
-      <td><%= board.getRegDate() %></td>
-      <td><%= board.getCnt() %></td>
+      <td>${board.writer}</td>
+      <td>${board.regDate}</td>
+      <td>${board.cnt}</td>
     </tr>
-    <% } %>
+    </c:forEach>
 
   </table>
   <br>

@@ -62,6 +62,13 @@
       <version>1.4</version>
     </dependency>
 
+    <!-- JSTL 라이브러리 -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
     <!-- AspectJ -->
     <dependency>
       <groupId>org.aspectj</groupId>
