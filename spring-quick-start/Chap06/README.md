@@ -29,9 +29,15 @@ DispatcherServlet은 클라이언트의 요청을 가장 먼저 받아들이는 
 ### EL/JSTL을 이용한 JSP 화면 처리
 JSP 파일에서 Controller 로직에 해당하는 자바 코드를 제거하기 위해 Model 2 아키텍처로 전환하였다. 사용자 입력 정보 추출, DB 연동 처리 등의 Controller 로직에 해당하는 자바 코드는 남아있지 않지만, 여전히 자바 코드는 남아 있는 JSP 파일이 존재한다. 이런 자바 코드도 없애려면 <b>EL(Expression Language)</b>과 <b>JSTL(JSP Standard Tag Library)</b>를 사용하면 된다.  
 
+### Spring MVC
+Spring MVC에서 가장 중요한 요소는 모든 클라이언트의 요청을 가장 먼저 받아들이는 DispatcherServlet이다. 
+
+
 ### 커밋
 - [99fe82d](https://github.com/ItzTree/study-archive/commit/99fe82d7972f1b7fb25c4d58eafcb931190b3dfd)  
     Controller 인터페이스, HandlerMapping, ViewResolver 등 MVC 프레임워크 기본 토대를 구현한다.  
 - [f4c1560](https://github.com/ItzTree/study-archive/commit/f4c156036bb964a8cc844adbf15dfd8b8200f6cf)  
     DispatcherServlet에 있던 컨트롤러 기능을 별도의 컨트롤러 클래스로 분리한다.  
+- [c0dfa43](https://github.com/ItzTree/study-archive/commit/c0dfa43bf5e0c50b436953972cb4f3b424cb97dd)  
+    EL과 JSTL을 이용하여 화면을 처리한다.  
 - 
