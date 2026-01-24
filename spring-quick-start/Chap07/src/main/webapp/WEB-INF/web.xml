@@ -6,7 +6,7 @@
   <!-- 1. Root Context: 웹과 관련 없는 공유 자원(DB 등) 설정 파일 위치 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/spring/root-context.xml</param-value>
+    <param-value>classpath:applicationContext.xml</param-value>
   </context-param>
 
   <!-- 스프링 컨테이너 구동 리스너 -->
