@@ -42,6 +42,14 @@ public class BoardController {
 ```
 `getBoard()` 메소드는 검색 결과인 BoardVO 객체를 board라는 이름으로 Model에 저장하게 된다. 이 때, @SessionAttributes에 의해 "board"라는 이름으로 저장되는 Model 데이터를 세션에도 자동으로 저장하게 된다. `updateBoard()`의 파라미터에도 @ModelAttribute가 선언되어, 사용자가 입력하지 않은 데이터는 검색 결과를 따르게 되고 나머지는 입력한 데이터로 수정된다.  
 
+### 프레젠테이션 레이어와 비즈니스 레이어 통합
+브라우저에서 버튼이나 하이퍼링크를 클릭하여 서버에 요청을 전송하면, 모든 요청을 DispatcherServlet이 받아서 Controller에게 요청을 전달한다. Controller는 매개변수를 통해 전달된 DAO 객체를 이용하여 사용자가 요청한 로직을 처리한다.  
+하지만 **Controller는 DAO 객체를 직접 이용해서는 안되고**, 반드시 **비즈니스 컴포넌트를 이용**해야 한다. 이때 컴포넌트가 제공하는 Service 인터페이스를 이용한다. **유지보수** 과정에서 DAO 클래스를 다른 클래스로 쉽게 교체하기 위한 것이다. 클라이언트가 인터페이스를 통해서 비즈니스 컴포넌트를 이용하면 컴포넌트의 구현 클래스를 수정하거나 다른 클래스로 대체하더라도, 이를 사용하는 클라이언트는 수정하지 않아도 되기 때문이다.  
+BoardController의 모든 메소드에 대해 boardService 변수를 이용하게 하여 비즈니스 컴포넌트를 사용하도록 수정했다. 또, @Autowired로 선언하여 BoardServiceImpl 객체가 의존성 주입된다. 이로 인해, BoardServiceImpl에서 사용하는 DAO 클래스가 변경되어도 클라이언트에 해당하는 BoardController는 수정할 필요가 없게 된다.  
+Controller에서 DAO 메소드를 직접 호출하면 안되는 이유로는 **AOP**도 있다. 횡단 관심에 해당하는 어드바이스가 동작하려면 반드시 Service 구현 클래스(ServiceImpl)의 비즈니스 메소드가 실행되어야 한다. 포인트컷을 설정할 때 ServiceImpl의 메소드로 설정했기 때문에, DAO의 메소드를 직접 호출하면 어드바이스가 동작하지 않게 된다.  
+클라이언트로부터 ".do" 요청이 들어오면 서블릿 컨테이너는 DispatcherServlet을 생성하고, 서블릿은 스프링 설정 파일 presentation-layer.xml을 로딩하여 스프링 컨테이너를 구동한다. 스프링 설정 파일은 Controller 객체들만 컴포넌트 스캔하도록 설정해 BoardController 객체만 메모리에 생성을 시도한다. 하지만, @Autowired 어노테이션을 사용하기 위해서는 **의존성 주입될 BoardServiceImpl 객체가 미리 생성**되어 있어야 하므로 에러가 발생하게 된다. 이러한 비즈니스 컴포넌트를 먼저 생성하는 다른 스프링 컨테이너가 필요하다.  
+Controller 객체들이 생성되기 전에 비즈니스 컴포넌트들을 메모리에 생성시키는 ContextLoaderListener를 사용할 수 있다. ContextLoaderListener 클래스는 서블릿 컨테이너가 web.xml 파일을 읽어서 구동될 때, 자동으로 메모리에 생성되는 pre-loading 객체다.  
+톰캣 서버를 구동하면, web.xml 파일을 로딩하여 서블릿 컨테이너가 구동된다. 서블릿 컨테이너는 web.xml 파일에 등록된 ContextLoaderListener 객체를 생성(pre-loading)하고, Listener 객체는 applicationContext.xml 파일을 로딩하여 루트 컨테이너가 되는 스프링 컨테이너를 구동한다. 이때, Service 구현 클래스나 DAO 객체들이 메모리에 생성된다. 사용자가 버튼을 통해 ".do" 요청을 서버에 전달하면 서블릿 컨테이너는 DispatcherServlet 객체를 생성하고, Servlet 객체는 presentation-layer.xml 파일을 로딩하여 다른 스프링 컨테이너를 구동한다. 이 두 번째 스프링 컨테이너가 Controller 객체를 메모리에 생성한다.  
 
 
 ### 커밋
@@ -49,3 +57,5 @@ public class BoardController {
     기존의 Spring MVC를 어노테이션 @Controller와 @RequestMapping을 이용하여 리팩토링한다.  
 - [eec8f5c](https://github.com/ItzTree/study-archive/commit/eec8f5c3997797176c6c563de045ed1212d0f982)  
     Controller를 하나로 통합하고, 사용자 이름 정보를 세션에 저장한다. 또, Controller 리턴 타입을 String으로 통일한다.  
+- [b926de5](https://github.com/ItzTree/study-archive/commit/b926de501d685bfd1fb81aa3fbd5c3fa203fcf45)  
+    프레젠테이션 레이어와 비즈니스 레이어를 통합한다.  
