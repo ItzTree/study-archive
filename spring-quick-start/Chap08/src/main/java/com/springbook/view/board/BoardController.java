@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -72,7 +73,7 @@ public class BoardController {
         if (vo.getSearchCondition() == null)
             vo.setSearchCondition("TITLE");
         if (vo.getSearchKeyword() == null)
-            vo.setSearchKeyword("CONTENT");
+            vo.setSearchKeyword("");
 
         model.addAttribute("boardList", boardService.getBoardList(vo));
         return "getBoardList.jsp";
