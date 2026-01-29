@@ -27,6 +27,14 @@ BoardDAO 클래스에서는 SQL 명령어와 `getBoardList()` 메소드를 수�
 | FixedLocaleResolver | 웹 요청과 무관하게 특정 Locale로 고정 |
 해당 화면의 언어를 변경하기 위해서 LocaleChangeInterceptor 클래스를 인터셉트로 스프링 설정 파일에 등록한다.
 
+### 데이터 변환
+지금까지 BOARD 테이블에 저장된 게시글 정보를 저장하기 위해서 BoardVO 객체를 사용했다. BoardVO 객체에 저장된 데이터를 JSON 데이터로 변환하면, 변수와 변수에 저장된 값이 '키:값' 형태로 표현된다.  
+일반적으로, 브라우저에서 서블릿이나 JSP 파일을 요청하면 서버는 클라이언트가 요청한 서블릿이나 JSP를 찾아서 **실행**한다. 그리고 실행 결과를 HTTP 응답 프로토콜 메시지 바디에 저장하여 브라우저에 전송하게 되어, 브라우저는 항상 실행 결과 화면만 표시한다. 이 응답 결과를 HTML이 아닌 JSON이나 XML로 변환하여 메시지 바디에 저장하려면 스프링에서 제공하는 Converter를 사용하면 된다.  
+글 목록을 검색하여 리턴하는 `dataTransform()` 메소드 위에 @ResponseBody 어노테이션이 추가되었는데, 자바 객체를 HTTP 응답 프로토콜의 몸체로 변환하기 위해 사용한다. 이 메소드의 실행결과는 JSON으로 변환되어 HTTP 응답 바디에 설정된다. 파일 업로드 정보 등 출력 결과에 포함하고 싶지 않은 변수에 대해서는 BoardVO 클래스의 **Getter 메소드**에 @JsonIgnore 어노테이션을 추가하면 된다.  
+
+JSON이 아닌 XML로 정보를 변환하는 방법도 있다. BoardVO 클래스에 @XmlAccessorType을 선언하여 BoardVO 객체를 XML로 변환할 수 있음을 나타내고, `XmlAccessType.FIELD`로 인하여 변수들은 자동으로 자식 엘리먼트로 표현된다. 속성으로 표현하고자 하는 변수에는 @XmlAttribute를, XML 변환에서 제외하고자 하는 변수에는 @XmlTransient를 붙인다.  
+XML 문서는 반드시 단 하나의 루트 엘리먼트를 가져야하므로, 여러 게시글 목록을 XML로 표현하기 위해서는 BoardVO 객체 여러 개를 포함하면서 루트 엘리먼트로 사용할 BoardListVO 클래스가 필요하다.  
+
 
 ### 커밋
 - [15e888b](https://github.com/ItzTree/study-archive/commit/15e888b2cfbf78d9986e6a68f05f005d1270e8e1)  
@@ -35,3 +43,6 @@ BoardDAO 클래스에서는 SQL 명령어와 `getBoardList()` 메소드를 수�
     파일 업로드 기능을 추가한다.  
 - [aec9fa2](https://github.com/ItzTree/study-archive/commit/aec9fa2139df4242771f5e1d6e616845f352b726)  
     어노테이션을 사용하여 예외 처리 로직을 추가한다.  
+- [e31033f](https://github.com/ItzTree/study-archive/commit/e31033fee8a7bac4166bacc87af0da859dfb6b47)  
+    다국어 처리 기능을 추가한다.  
+- 
