@@ -45,4 +45,5 @@ XML 문서는 반드시 단 하나의 루트 엘리먼트를 가져야하므로,
     어노테이션을 사용하여 예외 처리 로직을 추가한다.  
 - [e31033f](https://github.com/ItzTree/study-archive/commit/e31033fee8a7bac4166bacc87af0da859dfb6b47)  
     다국어 처리 기능을 추가한다.  
-- 
+- [8a959d6](https://github.com/ItzTree/study-archive/commit/8a959d634f6b0e856f369f28d68dad8a76ce4ec2)  
+    데이터 교환을 위해 JSON 또는 XML로 포맷팅한다.  
