@@ -1,6 +1,6 @@
 # Chap09
 
-책의 Day 5 CLASS 01 ~ Day 5 CLASS 07 파트를 다룬다.  
+책의 Day 5 CLASS 01 ~ Day 5 CLASS 02 파트를 다룬다.  
 
 ### Mybatis
 Mybatis 프레임워크의 가장 중요한 특징 중 첫번째는 한두 줄의 자바 코드로 **DB 연동을 처리**한다는 것이고, 두번째는 **SQL 명령어**를 자바 코드에서 분리하여 **XML 파일에 따로 관리**한다는 것이다.  
@@ -33,9 +33,8 @@ SqlSessionFactory 객체를 생성하려면 SqlSessionFactoryBuilder의 `build()
 SqlSessionFactory 객체는 `openSession()` 메소드를 제공하며, 이 메소드를 이용하여 SqlSession 객체를 얻을 수 있다. 이렇게 얻어낸 SqlSession 객체를 통해 글 등록 기능을 처리한다.  
 
 
-
-
-
 ### 커밋
 - [7dde09f](https://github.com/ItzTree/study-archive/commit/7dde09fdc749ec46219a726dfc94da91d650e95e)  
     Mybatis 프레임워크를 위한 VO, DAO, 설정 파일 등을 작성한다.  
+- [fcfdd4a](https://github.com/ItzTree/study-archive/commit/fcfdd4a0ebd3afa763f2359e4193bd620168bdb1)  
+    Mapper 파일을 리팩토링한다.  
