@@ -15,4 +15,5 @@
 ### 커밋
 - [4b47b83](https://github.com/ItzTree/study-archive/commit/4b47b8329ce67a44d92370181d37c4d406376378)  
     Mybatis를 이용하여 DAO 클래스를 구현하는 방법 중 SqlSessionDaoSupport 클래스를 상속하여 구현한다.  
-- 
+- [8daf413](https://github.com/ItzTree/study-archive/commit/8daf41353522b956020c4994b6e79cee4b764f16)  
+    SqlSessionTemplate 클래스를 bean 등록하여 DAO 클래스를 구현한다.  
