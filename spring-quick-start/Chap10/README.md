@@ -1,6 +1,6 @@
-# Chap09
+# Chap10
 
-책의 Day 5 CLASS 03 ~ Day 5 CLASS 07 파트를 다룬다.  
+책의 Day 5 CLASS 03 ~ Day 5 CLASS 06 파트를 다룬다.  
 
 ### 스프링과 MyBatis 연동
 스프링 쪽에서 Mybatis 연동에 필요한 API를 제공하지 않기 때문에, Mybatis에서 SqlSessionFactoryBean과 SqlSessionTemplate 클래스를 이용하여 연동해야 한다.  
@@ -13,7 +13,7 @@
 지금까지 스프링 JDBC나 Mybatis를 사용하여 자바 객체와 테이블을 매핑할 때, SQL 명령어를 자바 클래스나 XML 파일에 작성해야 했다. ORM 프레임워크를 사용하면 DB 연동에 필요한 SQL을 자동으로 생성한다.  
 <b>JPA(Java Persistence API)</b>는 모든 ORM 구현체들의 공통 인터페이스를 제공한다. JPA API를 이용하면 ORM 프레임워크를 필요할 때 변경할 수 있다.  
 
-
+### JPA 환경설정
 
 
 
