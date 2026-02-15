@@ -49,8 +49,6 @@ em.persist(board);
 트랜잭션을 시작하고 엔티티 클래스로 등록된 Board 객체를 생성한 다음, 글 등록에 필요한 값들을 저장한다. 반드시 EntityManager의 persist() 메소드로 영속화해야 INSERT 작업이 처리된다.  
 JPA 고유의 쿼리 구문인 JPQL을 작성하고 실행하면 JPA 구현체가 연동되는 DBMS에 맞게 JPQL을 적절한 SELECT 명령어로 변환한다.  
 
-
-
 ### 커밋
 - [4b47b83](https://github.com/ItzTree/study-archive/commit/4b47b8329ce67a44d92370181d37c4d406376378)  
     Mybatis를 이용하여 DAO 클래스를 구현하는 방법 중 SqlSessionDaoSupport 클래스를 상속하여 구현한다.  
@@ -60,3 +58,5 @@ JPA 고유의 쿼리 구문인 JPQL을 작성하고 실행하면 JPA 구현체�
     Dynamic SQL을 이용하여 검색 기능을 처리한다.  
 - [510ae55](https://github.com/ItzTree/study-archive/commit/510ae55b9dfb80999601d6af73fc27f20fc1c72c)  
     JPA 기본 구조를 설정한다.  
+- [0a26d11](https://github.com/ItzTree/study-archive/commit/0a26d11ae09e8f715a2cdc844a72d014fedeb87f)  
+    BoardWeb 프로젝트를 JPA 연동한다.  
