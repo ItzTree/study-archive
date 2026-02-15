@@ -12,3 +12,5 @@
 | Chap06 | Day03_CLASS 04 ~ Day03_CLASS 07 |
 | Chap07 | Day04_CLASS 01 ~ Day04_CLASS 03 |
 | Chap08 | Day04_CLASS 04 ~ Day04_CLASS 07 |
+| Chap09 | Day05_CLASS 01 ~ Day05_CLASS 02 |
+| Chap10 | Day05_CLASS 03 ~ Day05_CLASS 06 |
