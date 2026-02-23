@@ -24,3 +24,73 @@ y =
     0 & (x \le 0)
 \end{cases}
 ```
+
+활성화 함수로 사용되는 시그모이드 함수는 다음과 같다.
+```math
+y = \frac{1}{1 + exp(-x)}
+```
+```math
+\frac{\partial y}{\partial x} = \frac{exp(-x)}{(1+exp(-x))^2} = y(1-y)
+```
+
+### Affine 계층
+신경망의 순전파에서 가중치 신호의 총합을 계산하기 위해 $Y = X \cdot W + B$와 같은 식을 이용했다. 이를 계산 그래프로 나타내면 $X$와 $W$를 곱하는 노드와 $X \cdot W$와 B를 더하는 노드가 있을 것이다. $Y = X \cdot W$의 역전파를 구해보도록 하겠다.  
+```math
+\begin{pmatrix}
+y_{11} & y_{12} \\
+y_{21} & y_{22}
+\end{pmatrix}
+= 
+\begin{pmatrix}
+x_{11} & x_{12} & x_{13} \\
+x_{21} & x_{22} & x_{23} 
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+w_{11} & w_{12} \\
+w_{21} & w_{22} \\
+w_{31} & w_{32} \\
+\end{pmatrix}
+```
+여기서, $y_{11} = x_{11}w_{11} + x_{12}w_{21} + x_{13}w_{31}$로 나타낼 수 있다. 여기서 $y_{11}$을 $x_{11}$에 대해 미분하면 $\dfrac{\partial y_{11}}{\partial x_{11}} = w_{11}$이 된다.  
+구하고자 하는 값은 Loss를 $x_{11}$로 편미분한 값인 $\frac{\partial L}{\partial x_{11}}$이다. 그렇다면 연쇄법칙을 이용하여 다음과 같은 수식을 구할 수 있다.  
+```math
+\frac{\partial L}{\partial x_{11}}
+= \frac{\partial y_{11}}{\partial x_{11}}\frac{\partial L}{\partial y_{11}} + \frac{\partial y_{12}}{\partial x_{11}}\frac{\partial L}{\partial y_{12}} 
+= w_{11} \frac{\partial L}{\partial y_{11}} + w_{12} \frac{\partial L}{\partial y_{12}}
+```
+$\frac{\partial L}{\partial x_{11}}$은 $x_{11}$이 아주 조금 변했을 때, $L$이 얼마나 변했는지를 알 수 있다. 위 행렬에서 $x_{11}$이 변하면 $y_{11}$과 $y_{12}$를 통해 $L$이 변하게 되므로, $\frac{\partial L}{\partial x_{11}}$은 $y_{11}$과 $y_{12}$에 따른 변화율 합을 통해 구해야 한다.  
+```math
+\begin{align}
+\frac{\partial L}{\partial X} 
+& = \begin{pmatrix}
+\frac{\partial L}{\partial x_{11}} &
+\frac{\partial L}{\partial x_{12}} &
+\frac{\partial L}{\partial x_{13}} \\ \\
+\frac{\partial L}{\partial x_{21}} &
+\frac{\partial L}{\partial x_{22}} &
+\frac{\partial L}{\partial x_{23}} 
+\end{pmatrix} \\ 
+& = \begin{pmatrix}
+\frac{\partial L}{\partial y_{11}} w_{11} + \frac{\partial L}{\partial y_{12}} w_{12} &
+\frac{\partial L}{\partial y_{11}} w_{21} + \frac{\partial L}{\partial y_{12}} w_{22} &
+\frac{\partial L}{\partial y_{11}} w_{31} + \frac{\partial L}{\partial y_{12}} w_{32} \\ \\
+\frac{\partial L}{\partial y_{21}} w_{11} + \frac{\partial L}{\partial y_{22}} w_{12} &
+\frac{\partial L}{\partial y_{21}} w_{21} + \frac{\partial L}{\partial y_{22}} w_{22} &
+\frac{\partial L}{\partial y_{21}} w_{31} + \frac{\partial L}{\partial y_{22}} w_{32}
+\end{pmatrix} \\
+& = \begin{pmatrix}
+\frac{\partial L}{\partial y_{11}} &
+\frac{\partial L}{\partial y_{12}} \\ \\
+\frac{\partial L}{\partial y_{21}} &
+\frac{\partial L}{\partial y_{22}} 
+\end{pmatrix}
+\begin{pmatrix}
+w_{11} & w_{21} & w_{31} \\
+w_{12} & w_{22} & w_{32}
+\end{pmatrix} \\
+& = 
+\frac{\partial L}{\partial Y} \ \cdot W^T 
+\end{align}
+```
+마찬가지로, $\dfrac{\partial L}{\partial W} = W^T \cdot \dfrac{\partial L}{\partial Y}  $라는 식을 유도할 수 있다.
