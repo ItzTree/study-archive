@@ -93,4 +93,8 @@ w_{12} & w_{22} & w_{32}
 \frac{\partial L}{\partial Y} \ \cdot W^T 
 \end{align}
 ```
-마찬가지로, $\dfrac{\partial L}{\partial W} = W^T \cdot \dfrac{\partial L}{\partial Y}  $라는 식을 유도할 수 있다.
+마찬가지로, $\dfrac{\partial L}{\partial W} = W^T \cdot \dfrac{\partial L}{\partial Y} $라는 식을 유도할 수 있다. 
+
+### Softmax with Loss 계층
+입력 값을 정규화하는 소프트맥스 함수와 손실 함수인 Cross Entropy Error를 포함하여 설계하겠다. 간단하게 3개의 클래스로 분류한다고 가정하면, 소프트맥스 계층은 입력 $(a_1, a_2, a_3)$를 정규화하여 $(y_1, y_2, y_3)$을 출력한다. CEE 계층은 소프트맥스의 출력 $(y_1, y_2, y_3)$와 정답 레이블 $(t_1, t_2, t_3)$를 받고, 손실 L을 출력한다.  
+소프트맥스 계층의 역전파는 $(y_1 - t_1, y_2 - t_2, y_3 - t_3)$이라는 결과를 내놓는다. 즉, 신경망의 역전파는 **소프트맥스 계층의 출력과 정답 레이블 사이의 오차**가 앞 계층에 전해지게 된다.  
