@@ -1,46 +1,52 @@
 import numpy as np 
-from functions import *
+from layers import *
+from functions import numerical_gradient
+from collections import OrderedDict
 
 class TwoLayerNet:
     # input_size: 입력 뉴런 수, hidden_size: 은닉층 뉴런 수
     # output_size: 출력 뉴런 수
     def __init__(self, input_size, hidden_size, output_size, weight_init_std=0.01):
+        # 가중치 초기화 
+
         self.params={}
         self.params['W1'] = weight_init_std * np.random.randn(input_size, hidden_size)
         self.params['b1'] = np.zeros(hidden_size)
         self.params['W2'] = weight_init_std * np.random.randn(hidden_size, output_size)
         self.params['b2'] = np.zeros(output_size)
 
+        # 계층 생성
+        self.layers = OrderedDict()
+        self.layers['Affine1'] = Affine(self.params['W1'], self.params['b1'])
+        self.layers['Relu1'] = ReLU()
+        self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
+
+        self.lastLayer = SoftmaxWithLoss()
+
     # 추론(순전파)
     # 입력값 X를 신경망에 통과시켜 결과 Y를 얻음
     def predict(self, x):
-        W1, W2 = self.params['W1'], self.params['W2']
-        b1, b2 = self.params['b1'], self.params['b2']
+        for layer in self.layers.values():
+            x = layer.forward(x)
 
-        a1 = np.dot(x, W1) + b1
-        z1 = sigmoid(a1)
-        a2 = np.dot(z1, W2) + b2 
-        y = softmax(a2)
-
-        return y
+        return x
     
-    # x: 입력 데이터, t: 정답 레이블
-    # 예측 결과 Y를 갖고 손실 함수값을 얻어냄
+    # x : 입력 데이터, t : 정답 레이블
     def loss(self, x, t):
         y = self.predict(x)
-
-        return cross_entropy_error(y, t)
+        return self.lastLayer.forward(y, t)
     
     # 정확도(0~1)를 구함
     def accuracy(self, x, t):
         y = self.predict(x)
         y = np.argmax(y, axis=1)
-        t = np.argmax(t, axis=1)
+        if t.ndim != 1 :
+            t = np.argmax(t, axis=1)
 
         accuracy = np.sum(y == t) / float(x.shape[0])
         return accuracy
     
-    # 기울기를 구함
+    
     def numerical_gradient(self, x, t):
         loss_W = lambda W: self.loss(x, t)
 
@@ -49,5 +55,27 @@ class TwoLayerNet:
         grads['b1'] = numerical_gradient(loss_W, self.params['b1'])
         grads['W2'] = numerical_gradient(loss_W, self.params['W2'])
         grads['b2'] = numerical_gradient(loss_W, self.params['b2'])
+
+        return grads
+    
+    def gradient(self, x, t):
+        # 순전파
+        self.loss(x, t)
+
+        # 역전파
+        dout = 1
+        dout = self.lastLayer.backward(dout)
+
+        layers = list(self.layers.values())
+        layers.reverse()
+        for layer in layers:
+            dout = layer.backward(dout)
+        
+        # 결과 저장
+        grads = {}
+        grads['W1'] = self.layers['Affine1'].dW
+        grads['b1'] = self.layers['Affine1'].db
+        grads['W2'] = self.layers['Affine2'].dW
+        grads['b2'] = self.layers['Affine2'].db
 
         return grads
