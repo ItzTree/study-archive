@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/ic_prev_button"
+            android:background="#FFFFFF"
+            android:contentDescription="뒤로가기"/>
+        
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="100dp"
+            android:paddingBottom="40dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘 하루는 어땠나요?"
+                android:textSize="36sp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:fontFamily="@font/gangwon_edu_hyeonok_t" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="감정우표를 선택해주세요"
+                android:textSize="26sp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/gangwon_edu_hyeonok_t" />
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="선택한 감정우표를 기반으로 맞춤형 질문이 배달됩니다"
+                android:textSize="10sp"
+                android:textColor="#000000"
+                android:gravity="center"
+                android:fontFamily="@font/sc_dream_6"
+                android:layout_marginTop="32dp" />
+
+            <!-- 감정 항목들 -->
+            <LinearLayout
+                android:id="@+id/emotionContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="40dp" />
+
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>
